@@ -1,0 +1,20 @@
+data = []
+data1= []
+import csv
+from urllib.request import urlopen, HTTPError
+from datetime import datetime, timedelta
+for pg in s:
+    # query the website and return the html to the variable 'page'
+    page = urllib.request.urlopen(pg)
+    try:
+        search_response = urllib.request.urlopen(pg)
+    except urllib.request.HTTPError:
+        pass
+    # parse the html using beautiful soap and store in variable `soup`
+    soup = BeautifulSoup(page, 'html.parser')
+    # Take out the <div> of name and get its value
+    ls = [x.get_text(strip=True) for x in soup.find_all("h2", {"class": "f18"})]
+    ls1=  [x.get_text(strip=True) for x in soup.find_all("span", {"class": "date"})]
+    # save the data in tuple
+    data.append((ls))
+    data1.append(ls1)
